@@ -1,0 +1,39 @@
+---
+title: "2021-06-03-Alfredo_Hlito"
+author: "Kristen A, kkakey"
+date: "6/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot()+
+  # right-side lines
+  geom_segment(aes(x=3.4, xend=4, y=1.4, yend=1.4), size=.7, color="black") +
+  geom_segment(aes(x=3.4, xend=4, y=1.2, yend=1.2), size=.7, color="#1B4594") +
+  geom_segment(aes(x=3.4, xend=4, y=1, yend=1), size=.7, color="#779D39") +
+  geom_segment(aes(x=3.4, xend=4, y=.2, yend=.2), size=.7, color="#C64026") +
+  # left-side lines
+  geom_segment(aes(x=1, xend=1.6, y=.6, yend=.6), size=.7, color="#779D39") +
+  geom_segment(aes(x=1, xend=1.6, y=-.2, yend=-.2), size=.7, color="#C64026") +
+  geom_segment(aes(x=1, xend=1.6, y=-.4, yend=-.4), size=.7, color="#1B4594") +
+  geom_segment(aes(x=1, xend=1.6, y=-.6, yend=-.6), size=.7, color="black") +
+  geom_segment(aes(x=1, xend=1.55, y=-3, yend=-3), size=.7, color="#C64026") +
+  # middle section
+  geom_curve(aes(yend=5, y=-2.4, x=1.45, xend=1.75), curvature = .45, color="#C5B75B", size=.7) +
+  geom_segment(aes(x=1.8, xend=3, y=-.5, yend=-2.8), size=.7, color="black", size=.7) +
+  geom_curve(aes(yend=-4.2, y=-1.25, x=2.2, xend=2.3), curvature = .45, color="#1B4594", size=.7) +
+  xlim(0,5) + ylim(-5,5) +
+  theme_void() +
+  theme(plot.background = element_rect(fill="#E0D9CB", color=NA),
+        panel.background = element_rect(fill="#E0D9CB", color=NA)) +
+  ggsave("my-plot.png", height=4.816, width=4.8)
+```
+
