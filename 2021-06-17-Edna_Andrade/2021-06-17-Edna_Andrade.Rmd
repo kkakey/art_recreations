@@ -1,0 +1,159 @@
+---
+title: "2021-06-17-Edna_Andrade"
+author: "Kristen A, kkakey"
+date: "6/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Edna Andrade's Twilight Wave (1973)
+
+[Original art](https://www.locksgallery.com/exhibitions/edna-andrade-symmetries#2)
+
+```{r}
+library(tidyverse)
+library(ggforce)
+```
+
+The data below could definitly put into a dataframe to drastically reduce the number of lines of code.
+However, I decided to keep it in this format so I could keep the comments I added to help deicpher the coordinates and colors of the circles. 
+
+```{r}
+plot <- ggplot() +
+  ### uncomment to show the original image  ###
+  # ggimage::geom_image(data = NULL, aes(0, 0, image = "original.jpeg"), size = 1) +
+  
+  ### big circles  ###
+  # middle 
+  geom_circle(aes(x0 = 0, y0 = .31, r = .44), size=.4, fill="#97AEA4") +
+  geom_circle(aes(x0 = 0, y0 = .31*5, r = .44), size=.4, fill="#A79EA5") +
+  geom_circle(aes(x0 = 0, y0 = -.31*3, r = .44), size=.4, fill="#A79EA5") +
+  # second middle 
+  geom_circle(aes(x0 = -.62, y0 = -.31*5, r = .44), size=.4, fill="#B6AFBD") +
+  geom_circle(aes(x0 = .62, y0 = -.31*5, r = .44), size=.4, fill="#A9B9B3") +
+  geom_circle(aes(x0 = -.62, y0 = -.31, r = .44), size=.4, fill="#B6AFBD") +
+  geom_circle(aes(x0 = .62, y0 = -.31, r = .44), size=.4, fill="#A9B9B3") +
+  geom_circle(aes(x0 = -.62, y0 = .93, r = .44), size=.4, fill="#B6AFBD") +
+  geom_circle(aes(x0 = .62, y0 = .93, r = .44), size=.4, fill="#A9B9B3") +
+  # outer 
+  geom_circle(aes(x0 = -.62*2, y0 = .31, r = .44), size=.4, fill="#D4D5D4") +
+  geom_circle(aes(x0 = -.62*2, y0 = .31*5, r = .44), size=.4, fill="#D4D5D4") +
+  geom_circle(aes(x0 = -.62*2, y0 = -.31*3, r = .44), size=.4, fill="#D4D5D4") +
+  geom_circle(aes(x0 = .62*2, y0 = .31, r = .44), size=.4, fill="#BBC9C4") +
+  geom_circle(aes(x0 = .62*2, y0 = .31*5, r = .44), size=.4, fill="#BBC9C4") +
+  geom_circle(aes(x0 = .62*2, y0 = -.31*3, r = .44), size=.4, fill="#BBC9C4") +
+
+  ### little circles  ###
+  # middle
+  geom_circle(aes(x0 = -.08, y0 = -.23, r = .11), fill="#A79EA5") +
+  geom_circle(aes(x0 = .08, y0 = -.38, r = .11), fill="#97AEA4") +
+  
+  geom_circle(aes(x0 = -.08, y0 = -1.48, r = .11), fill="#A79EA5") +
+  geom_circle(aes(x0 = .08, y0 = -1.63, r = .11), fill="#97AEA4") +
+  
+  geom_circle(aes(x0 = -.08, y0 = 1, r = .11), fill="#A79EA5") +
+  geom_circle(aes(x0 = .08, y0 = .85, r = .11), fill="#97AEA4") +
+  
+  ## second middle
+  geom_circle(aes(x0 = -1.32/2, y0 = 1.68, r = .11), fill="#C7C7C7") +
+  geom_circle(aes(x0 = 1.32/2+.03, y0 = .85+.63, r = .11), fill="#B4C4BE") +
+  geom_circle(aes(x0 = (1.32/2)-.08, y0 = 1.68, r = .11), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (-1.32/2)+.12, y0 = .85+.63, r = .11), fill="#B7B3B9") +
+
+  geom_circle(aes(x0 = (-1.32/2)-.03, y0 = .39, r = .11), fill="#C7C7C7") +
+  geom_circle(aes(x0 = 1.32/2+.04, y0 = .23, r = .11), fill="#B4C4BE") +
+  geom_circle(aes(x0 = (1.32/2)-.11, y0 = .39, r = .11), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (-1.32/2)+.11, y0 = .23, r = .11), fill="#B7B3B9") +
+  
+  geom_circle(aes(x0 = (-1.32/2)-.03, y0 = -.85, r = .11), fill="#C7C7C7") +
+  geom_circle(aes(x0 = 1.32/2+.04, y0 = -1.01, r = .11), fill="#B4C4BE") +
+  geom_circle(aes(x0 = (1.32/2)-.11, y0 = -.85, r = .11), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (-1.32/2)+.11, y0 = -1.01, r = .11), fill="#B7B3B9") +
+  
+  # outer
+  geom_circle(aes(x0 = -1.32, y0 = -.23, r = .11), fill="#E1E2DE") +
+  geom_circle(aes(x0 = 1.32, y0 = -.38, r = .11), fill="#DDE3DC") +
+
+  geom_circle(aes(x0 = -1.32, y0 = -1.48, r = .11), fill="#E1E2DE") +
+  geom_circle(aes(x0 = 1.32, y0 = -1.63, r = .11), fill="#DDE3DC") +
+  geom_circle(aes(x0 = -1.32, y0 = 1, r = .11), fill="#E1E2DE") +
+  geom_circle(aes(x0 = 1.32, y0 = .85, r = .11), fill="#DDE3DC") +
+  
+  # lower 
+  geom_circle(aes(x0 = 1.16, y0 = 1, r = .11), fill="#CBD7CE") +
+  geom_circle(aes(x0 = -1.16, y0 = .85, r = .11), fill="#D7D8D7") +
+  
+  geom_circle(aes(x0 = 1.16, y0 =-.23, r = .11), fill="#CBD7CE") +
+  geom_circle(aes(x0 = -1.16, y0 = -.38, r = .11), fill="#D7D8D7") +
+  
+  geom_circle(aes(x0 = 1.16, y0 = -1.48, r = .11), fill="#CBD7CE") +
+  geom_circle(aes(x0 = -1.16, y0 = -1.63, r = .11), fill="#D7D8D7") +
+
+  ### medium circles ###
+  # middle
+  geom_circle(aes(x0 = -.095, y0 = .1, r = .21), fill="#A79EA5") +
+  geom_circle(aes(x0 = .095, y0 = .52, r = .21), fill="#97AEA4") +
+  
+  geom_circle(aes(x0 = -.095, y0 = 1.35, r = .21), fill="#A79EA5") +
+  geom_circle(aes(x0 = .095, y0 = 1.75, r = .21), fill="#97AEA4") +
+  
+  geom_circle(aes(x0 = -.095, y0 = -1.12, r = .21), fill="#A79EA5") +
+  geom_circle(aes(x0 = .095, y0 = -.73, r = .21), fill="#97AEA4") +
+  
+  # second middle
+  geom_circle(aes(x0 = (1.15/2)-.05, y0 = .1-.62, r = .21), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (1.35/2)+.05, y0 = .52-.62, r = .21), fill="#B4C4BE") +
+  geom_circle(aes(x0 = (-1.35/2)-.05, y0 = .1-.62, r = .21), fill="#C7C7C7") +
+  geom_circle(aes(x0 = (-1.15/2)+.05, y0 = .52-.62, r = .21), fill="#B7B3B9") +
+  
+  geom_circle(aes(x0 = (-1.35/2)-.05, y0 = 1.35-.62, r = .21), fill="#C7C7C7") +
+  geom_circle(aes(x0 = (-1.15/2)+.05, y0 = 1.75-.62, r = .21), fill="#B7B3B9") +
+  geom_circle(aes(x0 = (1.15/2)-.05, y0 = 1.35-.62, r = .21), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (1.35/2)+.05, y0 = 1.75-.62, r = .21), fill="#B4C4BE") +
+  
+  geom_circle(aes(x0 = (-1.15/2)+.05, y0 = -.73-.62, r = .21), fill="#B7B3B9") +
+  geom_circle(aes(x0 = (-1.35/2)-.05, y0 = -1.12-.62, r = .21), fill="#C7C7C7") +
+  geom_circle(aes(x0 = (1.15/2)-.05, y0 = -1.13-.62, r = .21), fill="#A9B9B3") +
+  geom_circle(aes(x0 = (1.35/2)+.05, y0 = -.73-.62, r = .21), fill="#B4C4BE") +
+  
+  # outer
+  geom_circle(aes(x0 = 1.15, y0 = .1, r = .21), fill="#CBD7CE") +
+  geom_circle(aes(x0 = 1.35, y0 = .52, r = .21), fill="#DDE3DC") +
+  geom_circle(aes(x0 = -1.35, y0 = .1, r = .21), fill="#E1E2DE") +
+  geom_circle(aes(x0 = -1.15, y0 = .52, r = .21), fill="#D7D8D7") +
+  
+  geom_circle(aes(x0 = -1.35, y0 = 1.35, r = .21), fill="#E1E2DE") +
+  geom_circle(aes(x0 = -1.15, y0 = 1.75, r = .21), fill="#D7D8D7" ) +
+  geom_circle(aes(x0 = 1.15, y0 = 1.35, r = .21), fill="#CBD7CE") +
+  geom_circle(aes(x0 = 1.35, y0 = 1.75, r = .21), fill="#DDE3DC") +
+  
+  geom_circle(aes(x0 = -1.15, y0 = -.73, r = .21), fill="#D7D8D7") +
+  geom_circle(aes(x0 = -1.35, y0 = -1.12, r = .21), fill="#E1E2DE") +
+  geom_circle(aes(x0 = 1.15, y0 = -1.13, r = .21), fill="#CBD7CE") +
+  geom_circle(aes(x0 = 1.35, y0 = -.73, r = .21), fill="#DDE3DC") +
+
+  ### orange circles
+  geom_circle(aes(x0 = 0, y0 = -.64, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = -1.22, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = -1.85, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = 0.02, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = 0.6, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = 1.26, r = .14), fill="orange", color="orange",alpha=.8) +
+  geom_circle(aes(x0 = 0, y0 = 1.84, r = .14), fill="orange", color="orange",alpha=.8) +
+
+  ### plot theme and layout
+  xlim(-1.7, 1.75) +
+  ylim(-2, 2) +
+  coord_fixed(expand = FALSE, clip = "on") +
+  theme(plot.background = element_rect(fill="#D1D1C7", color=NA),
+        panel.background = element_rect(fill="#D1D1C7", color=NA),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text = element_blank(), axis.ticks = element_blank()) + xlab("") + ylab("")
+
+ggsave("plot.png", height=5, width=5)
+```
+
