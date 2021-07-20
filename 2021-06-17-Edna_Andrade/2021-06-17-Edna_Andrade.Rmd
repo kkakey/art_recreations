@@ -18,8 +18,8 @@ library(tidyverse)
 library(ggforce)
 ```
 
-The data below could definitly put into a dataframe to drastically reduce the number of lines of code.
-However, I decided to keep it in this format so I could keep the comments I added to help deicpher the coordinates and colors of the circles. 
+The data below could definitly be put into a dataframe to drastically reduce the number of lines of code.
+However, I decided to keep it in this format so I could include the comments I added to help deicpher the coordinates and colors of the circles. 
 
 ```{r}
 plot <- ggplot() +
