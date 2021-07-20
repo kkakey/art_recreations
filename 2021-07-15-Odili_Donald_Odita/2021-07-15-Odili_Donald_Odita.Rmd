@@ -1,0 +1,245 @@
+---
+title: "2021-07-15-Odili_Donald_Odita"
+author: "Kristen A, kkakey"
+date: "7/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(ggforce)
+library(data.table)
+library(cowplot)
+```
+
+```{r}
+###### create one tile of each color ######
+########################################################################
+
+poly_tl <- data.frame(
+        x=c(-.02,.15,.15),
+        y=c(-.02,-.02,.3),
+        fill=rep("C", 3)
+)
+
+poly_t <- data.frame(
+        x=c(.15,.45,.45),
+        y=c(.3,.3,.453),
+        fill=rep("C", 3)
+)
+
+########################
+### the four colors ###
+# Blue — #1C4F94
+# Light blue — #448693
+# Pink — #D18A77
+# Orange — #E5A83B
+# Background — #96998E
+########################
+
+ggplot() +
+  ### uncomment to show the original image  ###
+  # ggimage::geom_image(data = NULL, aes(0, 0, image = "original.jpeg"), size = 1) +
+  geom_rect(aes(xmin=.157, xmax=.45, ymin=-.02, ymax=.3), color="#E5A83B", fill="#E5A83B") +
+  geom_polygon(data=poly_tl, aes(x=x,y=y), fill="#E5A83B", color="#E5A83B") +
+  geom_polygon(data=poly_t, aes(x=x,y=y), fill="#E5A83B", color="#E5A83B") +
+  xlim(-2, 2) +
+  ylim(-2, 2) +
+  coord_fixed(expand = FALSE, clip = "on") +
+  theme_void() +
+  theme(plot.background = element_rect(fill="#96998E", color="#96998E")) +
+  ggsave("plot.png", dpi=900)
+
+### I also manually saved rotated versions of each color tile
+```
+
+
+```{r}
+###### combine inividual tiles to create squares of four tiles ######
+########################################################################
+
+###### top ######
+ggdraw() + 
+  # bottom left
+  draw_image("plot-yellow.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-pink90.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-pink270.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-light_blue180.png", scale = .51, x = .247,y = .25) +
+  ggsave("1leftwhole.png", width=2.6, height=2.6)
+
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-blue180.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-pink90.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-pink90.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-yellow180.png", scale = .51, x = .247,y = .25) +
+  ggsave("1centerwhole.png", width=2.6, height=2.6)
+
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-light_blue180.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-blue270.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-blue90.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-pink.png", scale = .51, x = .247,y = .25) +
+  ggsave("1rightwhole.png", width=2.6, height=2.6)
+
+########################################################################
+###### middle ######
+ggdraw() + 
+  # bottom left
+  draw_image("plot-yellow.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-blue90.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-blue90.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-light_blue.png", scale = .51, x = .247,y = .25) +
+  ggsave("2leftwhole.png", width=2.6, height=2.6)
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-pink180.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-yellow90.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-yellow270.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-blue.png", scale = .51, x = .247,y = .25) +
+  ggsave("2centerwhole.png", width=2.6, height=2.6)
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-light_blue180.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-yellow270.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-yellow270.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-pink180.png", scale = .51, x = .247,y = .25) +
+  ggsave("2rightwhole.png", width=2.6, height=2.6)
+
+########################################################################
+###### bottom ######
+ggdraw() + 
+  # bottom left
+  draw_image("plot-blue180.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-light_blue270.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-light_blue90.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-yellow.png", scale = .51, x = .247,y = .25) +
+  ggsave("3leftwhole.png", width=2.6, height=2.6)
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-pink.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-light_blue270.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-light_blue270.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-blue.png", scale = .51, x = .247,y = .25) +
+  ggsave("3centerwhole.png", width=2.6, height=2.6)
+
+ggdraw() + 
+  # bottom left
+  draw_image("plot-yellow.png", scale = .51, x = -.247,y = -.25) +
+  # bottom right
+  draw_image("plot-pink90.png", scale = .51, x = .247,y = -.25) +
+  # top left
+  draw_image("plot-pink270.png", scale = .51, x = -.247,y = .25) +
+  # top right
+  draw_image("plot-light_blue180.png", scale = .51, x = .247,y = .25) +
+  ggsave("3rightwhole.png", width=2.6, height=2.6)
+
+########################################################################
+
+# ggdraw() + 
+#   # top left
+#   draw_image("plot-light_blue180.png", scale = .5, x = -.247,y = .25) +
+#   # top right
+#   draw_image("plot-yellow270.png", scale = .5, x = .247,y = .25) +
+#   ggsave("toplefthalf.png", width=2.6/2, height=2.6/2, dpi = 900)
+```
+
+
+```{r}
+###### combine squares to create each row ######
+########################################################################
+ggdraw() + 
+  # center
+  draw_image("1centerwhole.png", scale = 1, x = 0,y = 0) +
+  # right
+  draw_image("1rightwhole.png", scale = 1, x = .333,y = 0) +
+  # left
+  draw_image("1leftwhole.png", scale = 1, x = -.333,y = 0) +
+  ggsave("topallwhole.png", width=6, height=2)
+
+ggdraw() + 
+  # center
+  draw_image("2centerwhole.png", scale = 1, x = 0,y = 0) +
+  # right
+  draw_image("2rightwhole.png", scale = 1, x = .333,y = 0) +
+  # left
+  draw_image("2leftwhole.png", scale = 1, x = -.333,y = 0) +
+  ggsave("middleallwhole.png", width=6, height=2)
+
+
+ggdraw() + 
+  # center
+  draw_image("3centerwhole.png", scale = 1, x = 0,y = 0) +
+  # right
+  draw_image("3rightwhole.png", scale = 1, x = .33,y = 0) +
+  # left
+  draw_image("3leftwhole.png", scale = 1, x = -.33,y = 0) +
+  ggsave("bottomallwhole.png", width=6, height=2)
+```
+
+
+```{r}
+###### combine rows to create final plot ######
+########################################################################
+library(gridExtra)
+library(png)
+library(grid)
+library(ggplot2)
+
+plot1 <- readPNG('topallwhole.png')
+plot2 <- readPNG('middleallwhole.png')
+plot3 <- readPNG('bottomallwhole.png')
+
+p <- grid.arrange(rasterGrob(plot1),rasterGrob(plot2),rasterGrob(plot3),
+                  nrow = 3,
+                  padding = unit(0, "in"))
+ggsave("final.png", p, height=6, width=6)
+
+### I also manually increase the brightness on the final plot to more closely match the origianl
+```
+
+```{r}
+ggdraw() + 
+    draw_image("final.png", scale = .97, x=0 , y=0) +
+  theme(plot.background = element_rect(fill="white", color = NA)) 
+
+ggsave(filename="final-with_border.png", width=6, height=6, dpi=350)
+```
+
+
+
+
