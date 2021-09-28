@@ -1,0 +1,66 @@
+---
+title: "2021-08-12-Bridget_Riley"
+author: "Kristen A, kkakey"
+date: "9/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(ggforce)
+```
+
+```{r}
+val <- 13
+val_2 <- 20
+d <- data.frame(x = rep(seq(0,13,length.out=val),val_2),
+                y = sort(rep(seq(0,11,length.out=val_2),val))
+)
+
+d2 <- d
+d2$x <- d$x-(0.8333333/2)
+d2$y <- d$y-(0.5789474/2)
+
+d$a <- .1
+d$b <- .1
+d$s <- 1
+
+d2$a <- .1
+d2$b <- .1
+d2$s <- 1
+
+d[156:182,]$a <- .25
+d[156:182,]$b <- .07
+d[156:182,]$s <- .1
+
+d2[156:182,]$a <- .25
+d2[156:182,]$b <- .07
+d2[156:182,]$s <- .1
+
+
+ggplot() +
+  geom_ellipse(data = d, aes(x0 = x, y0 = y, 
+                             a=a,b=b,
+                             angle=0,  size=s), 
+               color = "#BBCE8A", fill="#BBCE8A") +
+  geom_ellipse(data = d2, aes(x0 = x, y0 = y, 
+                              a=.1,b=.1,angle=0, size=s), 
+               color="#D16014", fill="#D16014") +
+  xlim(-1, 11.5) +
+  ylim(-1, 11.6) +
+  coord_fixed(expand = F, clip = "on") +
+  scale_size(guide="none") +
+  theme_void() +
+  theme(plot.background = element_rect(color="#313715", fill="#313715")) +
+  ggsave("plot3.png", width = 10)
+```
+
+
+
+
+
+
