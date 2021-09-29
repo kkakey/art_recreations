@@ -56,11 +56,5 @@ ggplot() +
   scale_size(guide="none") +
   theme_void() +
   theme(plot.background = element_rect(color="#313715", fill="#313715")) +
-  ggsave("plot3.png", width = 10)
+  ggsave("plot.png", width = 10)
 ```
-
-
-
-
-
-
