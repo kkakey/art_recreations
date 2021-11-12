@@ -1,2 +1,4 @@
 *.rmd  linguist-detectable
 *.Rmd  linguist-detectable
+*.png linguist-vendored
+*.jpeg linguist-vendored
